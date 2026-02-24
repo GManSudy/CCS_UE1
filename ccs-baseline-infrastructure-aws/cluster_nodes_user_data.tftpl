@@ -1,0 +1,20 @@
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="//"
+
+--//
+Content-Type: application/node.eks.aws
+
+---
+apiVersion: node.eks.aws/v1alpha1
+kind: NodeConfig
+spec:
+  cluster:
+    apiServerEndpoint: ${cluster_api_server_endpoint}
+    certificateAuthority: ${cluster_certificate_authority}
+    cidr: ${cluster_cidr}
+    name: ${cluster_name}
+  kubelet:
+    flags:
+    - "--node-labels=eks.amazonaws.com/nodegroup=${node_group_name}"
+
+--//--
