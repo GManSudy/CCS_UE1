@@ -55,6 +55,7 @@ resource "aws_s3_bucket_policy" "cloudtrail_logs" {
 }
 
 resource "aws_cloudtrail" "trail" {
+  depends_on                = [aws_s3_bucket_policy.cloudtrail_logs]  
   name                       = "cloudtrail-${var.deployment_name}"
   s3_bucket_name             = aws_s3_bucket.cloudtrail_logs.id
   enable_log_file_validation = true

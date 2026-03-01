@@ -8,7 +8,7 @@ terraform {
   }
   backend "s3" {
     region = "eu-central-1"
-    bucket = "terraform-state-bucket-500128174326"
+    bucket = "terraform-state-bucket-wurscht1"
     key    = "aws-infrastructure.tfstate"
   }
 }
@@ -19,6 +19,10 @@ provider "aws" {
 
 data "aws_availability_zones" "available" {
   state = "available"
+  filter {
+    name   = "zone-name"
+    values = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
+  }
 }
 
 data "aws_caller_identity" "current" {}
